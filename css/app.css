@@ -1,0 +1,260 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* nav styles */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: rgb(5, 5, 116);
+  padding-left: 20px;
+}
+
+.hamburger {
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.hamburger .line{
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 10px;
+  background-color: black;
+}
+
+/* animate hamburger */
+
+/* rotate the first line to form x */
+@keyframes rotateTop{
+  0%{
+    transform: translateY(0%) rotate(0deg);
+  }
+  100%{
+    transform: translateY(300%) rotate(45deg);
+  }
+}
+
+/* rotate the last line to for x */
+@keyframes rotateBottom{
+  0%{
+    transform: translateY(0%) rotate(0deg);
+  }
+  100%{
+    transform: translateY(-300%) rotate(-45deg);;
+  }
+}
+
+
+@keyframes reduceOpacity{
+  0%{
+    opacity: 100%;
+  }
+  100%{
+    opacity: 0%;
+  }
+}
+
+
+.handle-one{
+	animation: rotateTop 0.3s ease-in;
+  	background-color: yellow;
+  	transform: translateY(300%) rotate(45deg);
+}
+
+.handle-three{
+	animation: rotateBottom 0.3s ease-in;
+  	background-color: yellow;
+  	transform: translateY(-300%) rotate(-45deg);
+}
+
+.handle-two{
+	animation: reduceOpacity 0.3 ease-in;
+	opacity: 0%;
+}
+
+
+/* rotate the first line to form x */
+@keyframes reverseRotateTop{
+  0%{
+    transform: translateY(300%) rotate(45deg);
+  }
+  100%{
+    transform: translateY(0%) rotate(0deg);
+  }
+}
+
+/* rotate the last line to for x */
+@keyframes reverseRotateBottom{
+  0%{
+    transform: translateY(-300%) rotate(-45deg);
+  }
+  100%{
+    transform: translateY(0%) rotate(0deg);
+  }
+}
+
+
+@keyframes addOpacity{
+  0%{
+    opacity: 0%;
+  }
+  100%{
+    opacity: 100%;
+  }
+}
+
+.reverse-handle-one{
+	animation: reverseRotateTop 0.3s ease-out;
+  	background-color: yellow;
+  	transform: translateY(0%) rotate(0deg);
+}
+
+.reverse-handle-three{
+	animation: reverseRotateBottom 0.3s ease-out;
+  	background-color: yellow;
+  	transform: translateY(0%) rotate(0deg);
+}
+
+.reverse-handle-two{
+	animation: addOpacity 0.2s ease-out;
+	opacity: 100%;
+}
+
+
+
+/* end animate hamburger */
+
+
+
+.nav__link {
+  position: fixed;
+  width: 100%;
+  top: 4rem;
+  background-color: lightblue;
+  opacity: 0.8;
+  filter: alpha(opacity=30); /* For IE8 and earlier */
+  border-radius: 4px;
+}
+
+.nav__link a {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.nav__link a:hover {
+  background-color: lightcoral;
+}
+
+.hide {
+  display: none;
+}
+
+/* main section */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	background-color: lightgoldenrodyellow;
+}
+
+.left-side{
+	flex: 100%;
+	background-color: lightcoral;
+}
+
+main{
+	flex: 100%;
+	background-color: lightblue;
+}
+
+.right-side{
+	flex: 100%;
+	background-color: lightslategrey;
+}
+
+/* end of Main section */
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+
+/* beginning of footer */
+
+footer{
+
+}
+
+footer a{
+
+}
+/* end of footer */
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* Media Queries for devices with screen width greater than 600px */
+@media screen and (min-width: 600px) {
+  .nav__link {
+    display: block;
+    position: static;
+    width: auto;
+    margin-right: 20px;
+    background: none;
+  }
+
+  .nav__link a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+
+  .hamburger {
+    display: none;
+  }
+}
+
+
+@media (min-width:  800px){
+	.wrapper{
+		display: flex;
+		flex-direction: row;
+		background-color: lightgoldenrodyellow;
+	}
+	.left-side{
+		flex: 20%;
+		background-color: lightcoral;
+	}
+
+	.right-side{
+		flex: 25%;
+		background-color: lightslategrey;
+	}
+
+	main{
+		flex: 55%;
+		background-color: lightblue;
+	}
+}
+
