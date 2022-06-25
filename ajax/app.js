@@ -1,22 +1,34 @@
 const btnGetBibleVerse = document.getElementById('get-bible-verse');
+const bibleBooksList = document.querySelector(".bible-books-list");
+const bookListArrays = document.querySelector('.bible-books');
+var itemClicked;
+var booksOnlyArrays = [];
+var bibleObj;
+var bookNodeSelected;
+var selectedBook;
+var selectedChapter;
 
-counter = 1;
 
-btnGetBibleVerse.addEventListener('click', ()=>{
-    counter += 1;
-    console.log("Get Bible Verse");
-    getBibleVerse();
+
+//execute when the document loads
+window.addEventListener('load', (event) => {
+    getBible();
 });
 
 
-document.;
+
+btnGetBibleVerse.addEventListener('click', ()=>{
+   getBookChapters();    
+});
+
+
 
 
 function handleBibleJSON(){
      handleAjaxRequest();
 }
 
-function getBibleVerse(){
+function getBible(){
     handleAjaxRequest();
 }
 
@@ -35,6 +47,7 @@ function handleAjaxRequest(){
           
           let receivedResponseText = ajaxRequest.responseText;
           tranverseBible(verseObject);
+          bibleObj = verseObject;
           
             
       }
@@ -54,11 +67,12 @@ function handleAjaxRequest(){
 
 
 function tranverseBible(verseObject){
-    console.log(verseObject["version"]);
+//    console.log(verseObject["version"]);
     
-    console.log(verseObject["books"][0]["name"]);
+//    console.log(verseObject["books"][0]["name"]);
+    
+    
     //use that object to set content and color
-    
     let verseDiv = document.getElementById("daily-verse");
     verseDiv.innerHTML = verseObject["books"][0]["name"];
     
@@ -66,28 +80,72 @@ function tranverseBible(verseObject){
     
     
     for(let i=0; i < verseObject["books"].length; i++){
-        let bookName = verseObject["books"][i]["name"];
-        displayBibleBooks(bookName);
+        var bookNames = verseObject["books"][i]["name"];
+        booksOnlyArrays.push(bookNames);
+        displayBibleBooks(bookNames);
     } 
     
    
 }
 
-
-
 function displayBibleBooks(text){
-    const bibleBooksList = document.querySelector(".bible-books-list");
     let bookName = document.createElement("li")
     let textNode = document.createTextNode(text)
-   
+    bookName.classList.add("bible-books");
+    bookName.setAttribute('id', text);
+    
+    
     bookName.appendChild(textNode);
     bibleBooksList.appendChild(bookName);
-    
 }
-	
 
 
-function getBookChapters(){
+
+var getTheBook = (event)=>{
+    let itemText = event.srcElement.innerHTML;
+    let bookId = event.srcElement.id;
+    bookNodeSelected = document.getElementById(bookId);
+   
+    
+    for(let k=0; k < bibleObj["books"].length; k++){
+        if(itemText == bibleObj['books'][k]['name']){
+            eachBook = bibleObj['books'][k];
+             displayChapters(eachBook);
+            selectedBook = eachBook;
+            return;
+        }
+    }
+}
+
+
+function displayChapters(text){
+    let chaptersList = document.createElement("ul");
+    
+    
+    
+    for(let chp=0; chp < text['chapters'].length; chp++){
+        let chapterText = text['chapters'][chp]['num'];
+        let chapter  = text['chapters'][chp]['num'];
+        
+        let chapterName = document.createElement("li");
+        
+        chapterName.innerHTML = text['chapters'][chp]['num'];
+        
+        chapterName.setAttribute('id', chapter);
+        
+        chapterName.classList.add("book-chapters");
+        chaptersList.appendChild(chapterName);
+    }   
+    bookNodeSelected.appendChild(chaptersList);
+}
+
+
+var getBookChapters = (event)=>{
+    let itemBook = event.srcElement.innerHTML;
+}
+      
+      
+function getVerses(){
     
 }
 
@@ -95,6 +153,19 @@ function getChapterText(){
 
 }
 
-function get VerseText(){
+function getVerseText(){
     
 }
+
+
+
+
+//Check if anything is clicked in the windows and log it to the console.
+const onClick = (event)=>{
+    itemClicked = event.srcElement;
+}
+
+// execute when anything is clicked in the window
+window.addEventListener('click', onClick);
+window.addEventListener('click', getTheBook);
+window.addEventListener('click', getBookChapters);
