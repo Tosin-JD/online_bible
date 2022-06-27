@@ -5,16 +5,16 @@ var itemClicked;
 var booksOnlyArrays = [];
 var bibleObj;
 var bookNodeSelected;
-var selectedBook = "Matthew";
+var selectedBook;
 var selectedChapter = "1";
 var selectedChapterText = [];
 var selectedChapterArray = [];
-
+var verseDiv = document.getElementById("daily-verse");
+    
 
 //execute when the document loads
 window.addEventListener('load', (event) => {
     getBible();
-    getBookChapters(); 
 });
 
 
@@ -65,14 +65,11 @@ function handleAjaxRequest(){
 
 
 function tranverseBible(verseObject){
-//    console.log(verseObject["version"]);
-    
-//    console.log(verseObject["books"][0]["name"]);
-    
+
     
     //use that object to set content and color
-    let verseDiv = document.getElementById("daily-verse");
-    verseDiv.innerHTML = verseObject["books"][0]["name"];
+    
+    // verseDiv.innerHTML = verseObject["books"][0]["name"];
     
     let bookArray = verseObject["books"];
     
@@ -81,9 +78,7 @@ function tranverseBible(verseObject){
         var bookNames = verseObject["books"][i]["name"];
         booksOnlyArrays.push(bookNames);
         displayBibleBooks(bookNames);
-    } 
-    
-   
+    }   
 }
 
 function displayBibleBooks(text){
@@ -108,7 +103,7 @@ var getTheBook = (event)=>{
     for(let k=0; k < bibleObj["books"].length; k++){
         if(itemText == bibleObj['books'][k]['name']){
             eachBook = bibleObj['books'][k];
-             displayChapters(eachBook);
+            displayChapters(eachBook);
             selectedBook = eachBook;
             return;
         }
@@ -118,7 +113,6 @@ var getTheBook = (event)=>{
 
 function displayChapters(text){
     let chaptersList = document.createElement("ul");
-    
     
     
     for(let chp=0; chp < text['chapters'].length; chp++){
@@ -135,10 +129,6 @@ function displayChapters(text){
         chaptersList.appendChild(chapterName);
     }   
     bookNodeSelected.appendChild(chaptersList);
-}
-
-var getBookChapters = (event)=>{
-    let itemBook = event.srcElement.innerHTML;
 }
 
 
@@ -171,31 +161,38 @@ var getChapterText = (event)=>{
     let chapterClicked = parseInt(event.srcElement.innerHTML);
     let chapters = bibleObj['books'];
 
+    try {
+        selectedChapterText = selectedBook['chapters'][chapterClicked - 1]['verses'];
+        selectedChapterArray = selectedBook['chapters'][chapterClicked - 1];
+    }
+    catch (TypeError) {
+      console.error(TypeError);
+    }
+    finally {
+        selectedBookName = selectedBook['name'];
+        verseDiv.innerHTML = selectedBook['name'];
 
-    selectedChapterText = selectedBook['chapters'][chapterClicked - 1]['verses'];
-    selectedChapterArray = selectedBook['chapters'][chapterClicked - 1];
+        removeAllChildNodes(chapterNodeSelected);
+        for(let i=0; i < selectedChapterText.length -1; i++){
+            let text = selectedChapterText[i]['text'];
+            let verseNum = selectedChapterText[i]['num']
 
-    removeAllChildNodes(chapterNodeSelected);
-    for(let i=0; i < selectedChapterText.length -1; i++){
-        console.log(selectedChapterText[i]['num']);
-        console.log(selectedChapterText[i]['text']);
-        let text = selectedChapterText[i]['text'];
-        let verseNum = selectedChapterText[i]['num']
-
-        let chapterText = createChapterTextNode(text, verseNum);
-        chapterNodeSelected.appendChild(chapterText);
+            let chapterText = createChapterTextNode(text, verseNum);
+            chapterNodeSelected.appendChild(chapterText);
+        }
     }
 }
 
 
 function displayDefaultChapter(){
+    selectedBook = "Matthew";
     selectedChapterText = bibleObj['books'][39]['chapters'][1]['verses'];
     
+    // selectedBookName = selectedBook['name'];
+    verseDiv.innerHTML = selectedBook['name'];
 
     removeAllChildNodes(chapterNodeSelected);
     for(let i=0; i < selectedChapterText.length -1; i++){
-        console.log(selectedChapterText[i]['num']);
-        console.log(selectedChapterText[i]['text']);
         let text = selectedChapterText[i]['text'];
         let verseNum = selectedChapterText[i]['num']
 
@@ -227,8 +224,6 @@ window.addEventListener('click', onClick);
 
 // check for the Bible book that is clicked
 window.addEventListener('click', getTheBook);
-
-window.addEventListener('click', getBookChapters);
 
 // check for the chapter of the book that is clicked
 window.addEventListener('click', getChapterText);
