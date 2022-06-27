@@ -1,26 +1,21 @@
-const btnGetBibleVerse = document.getElementById('get-bible-verse');
 const bibleBooksList = document.querySelector(".bible-books-list");
 const bookListArrays = document.querySelector('.bible-books');
+var chapterNodeSelected = document.getElementById('chapter-text');
 var itemClicked;
 var booksOnlyArrays = [];
 var bibleObj;
 var bookNodeSelected;
-var selectedBook;
-var selectedChapter;
-
+var selectedBook = "Matthew";
+var selectedChapter = "1";
+var selectedChapterText = [];
+var selectedChapterArray = [];
 
 
 //execute when the document loads
 window.addEventListener('load', (event) => {
     getBible();
+    getBookChapters(); 
 });
-
-
-
-btnGetBibleVerse.addEventListener('click', ()=>{
-   getBookChapters();    
-});
-
 
 
 
@@ -48,6 +43,9 @@ function handleAjaxRequest(){
           let receivedResponseText = ajaxRequest.responseText;
           tranverseBible(verseObject);
           bibleObj = verseObject;
+
+          // display default bible verse
+          displayDefaultChapter();
           
             
       }
@@ -139,19 +137,78 @@ function displayChapters(text){
     bookNodeSelected.appendChild(chaptersList);
 }
 
-
 var getBookChapters = (event)=>{
     let itemBook = event.srcElement.innerHTML;
 }
-      
+
+
+// not yet useful
+function lookForItem(arrayOfBooks, searchItem){
+    // Look for the book in the array of books
+    for (var i = arrayOfBooks.length - 1; i >= 0; i--) {
+        if(searchItem == arrayOfBooks[i]){
+            return arrayOfBooks[i];
+        }
+    }
+}
+
+function createChapterTextNode(text, verseNum){
+    let chapterTextNode = document.createTextNode(text);
+    let chapterParagraphNode = document.createElement('li');
+    chapterParagraphNode.appendChild(chapterTextNode);
+    // chapterNodeSelected
+    return chapterParagraphNode;
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+    return parent;
+}
+
+var getChapterText = (event)=>{
+    let chapterClicked = parseInt(event.srcElement.innerHTML);
+    let chapters = bibleObj['books'];
+
+
+    selectedChapterText = selectedBook['chapters'][chapterClicked - 1]['verses'];
+    selectedChapterArray = selectedBook['chapters'][chapterClicked - 1];
+
+    removeAllChildNodes(chapterNodeSelected);
+    for(let i=0; i < selectedChapterText.length -1; i++){
+        console.log(selectedChapterText[i]['num']);
+        console.log(selectedChapterText[i]['text']);
+        let text = selectedChapterText[i]['text'];
+        let verseNum = selectedChapterText[i]['num']
+
+        let chapterText = createChapterTextNode(text, verseNum);
+        chapterNodeSelected.appendChild(chapterText);
+    }
+}
+
+
+function displayDefaultChapter(){
+    selectedChapterText = bibleObj['books'][39]['chapters'][1]['verses'];
+    
+
+    removeAllChildNodes(chapterNodeSelected);
+    for(let i=0; i < selectedChapterText.length -1; i++){
+        console.log(selectedChapterText[i]['num']);
+        console.log(selectedChapterText[i]['text']);
+        let text = selectedChapterText[i]['text'];
+        let verseNum = selectedChapterText[i]['num']
+
+        let chapterText = createChapterTextNode(text, verseNum);
+        chapterNodeSelected.appendChild(chapterText);
+    }
+}
+
       
 function getVerses(){
     
 }
 
-function getChapterText(){
-
-}
 
 function getVerseText(){
     
@@ -167,5 +224,14 @@ const onClick = (event)=>{
 
 // execute when anything is clicked in the window
 window.addEventListener('click', onClick);
+
+// check for the Bible book that is clicked
 window.addEventListener('click', getTheBook);
+
 window.addEventListener('click', getBookChapters);
+
+// check for the chapter of the book that is clicked
+window.addEventListener('click', getChapterText);
+
+// check for the chapter of the book that is clicked
+window.addEventListener('click', getVerseText);

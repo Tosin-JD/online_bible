@@ -197,9 +197,9 @@ a {
 }
 
 .left-side{
-	flex: 100%;
-    padding: 20px;
-    background-color: #ddd;
+  flex: 100%;
+  padding: 20px;
+  background-color: #ddd;
 }
 
 main{
