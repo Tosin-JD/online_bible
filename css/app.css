@@ -161,26 +161,25 @@ a {
 
 /* End animate Mobile Nav */
 
-.nav__link {
+.nav-link {
     animation: expandNav 0.3s linear;
-    height: inherit%;
+    height: inherit;
     position: fixed;
     width: 100%;
     top: 4rem;
-    background-color: lightblue;
+    background-color: blue;
     opacity: 0.8;
-    filter: alpha(opacity=30); /* For IE8 and earlier */
-    border-radius: 4px;
+    border-radius: 4px;    
 }
 
-.nav__link a {
+.nav-link a {
     animation: addOpacity 0.3s ease-in;
     display: block;
     text-align: center;
     padding: 10px 0;
 }
 
-.nav__link a:hover {
+.nav-link a:hover {
   background-color: lightcoral;
 }
 
@@ -188,33 +187,49 @@ a {
   display: none;
 }
 
+
+
+/* side bar */
+
+
+.side-bar{
+  background-color: grey;
+  width: 200px;
+  /*height: 100vh;*/
+  position: fixed;
+  z-index: 1;
+  top: 64px;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+
+}
+
+/* end side bar */
+
+
 /* main section */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .wrapper{
 	display: flex;
+  margin-left: 20px;
 	flex-direction: column;
-}
-
-.left-side{
-  flex: 100%;
-  padding: 20px;
-  background-color: #ddd;
 }
 
 main{
     font-family: 'Mali', cursive;
     font-size: 1.5em;
-    flex: 100%;
+    flex: 70%;
     padding: 20px;
 }
 
 .right-side{
-	flex: 100%;
+	flex: 30%;
 	background-color: #2d2e2e;
-    color: #fcfcfc;
-    padding: 20px;
-    border-radius: 4px;
+  color: #fcfcfc;
+  padding: 20px;
+  border-radius: 4px;
 }
 
 /* end of Main section */
@@ -227,7 +242,6 @@ main{
 /* List of Bible Verses */
 .bible-books-list{
     margin: 10px 20px;
-    
 }
 
 .bible-books-list li{
@@ -253,18 +267,37 @@ li{
 /* end of left side*/
 
 
+/* Beginning of side hamburger */
 
+/* collapse and  display side bar */
 
+.side-hamburger{
+  background-color: #ccc;
+  padding: 4px;
+  width: 40px;
+  height: 40px;
+  border-radius:50%;
+  display: grid;
+  place-items: center;
+  border: 0.05px #000 solid;
+  position: fixed;
+  top: 120;
+  right: 20px;
+  z-index: 2;
+}
 
+.side-hamburger span{
+  background-color: black;
+  padding: 0px;
+  margin: 0px;
+  height: 4px;
+  width: 24px;
+}
 
-
-
-
+/* End of side hamburger */
 
 
 /* beginning of footer */
-
-
 .footer {
   bottom:0;
   left:0;
@@ -282,42 +315,69 @@ li{
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 
+ @media only screen and (max-width: 768px) {
+  body{
+    background-color: red;
+  }
+}
+
 /* Media Queries for devices with screen width greater than 600px */
-@media screen and (min-width: 600px) {
-  .nav__link {
+@media only screen and (min-width: 600px) {
+  .nav-link {
     display: block;
     position: static;
     width: auto;
     margin-right: 20px;
-    background: none;
   }
 
-  .nav__link a {
+  .nav-link a {
     display: inline-block;
     padding: 15px 20px;
   }
 
-  .hamburger {
+  .hamburger{
     display: none;
   }
 }
 
 
-@media (min-width:  800px){
-	.wrapper{
-		display: flex;
-		flex-direction: row;
-	}
-	.left-side{
-		flex: 20%;
-	}
+@media screen and (min-width: 800px){
+  body{
+    background-color: mediumpurple;
+  }
 
-	.right-side{
-		flex: 25%;
-	}
+  .side-hamburger{
+    background-color: #brown;
+    padding: 4px;
+    width: 40px;
+    height: 40px;
+    border-radius:50%;
+    display: grid;
+    place-items: center;
+    border: 0.05px #000 solid;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    z-index: 2;
+  }
 
-	main{
-		flex: 55%;
-	}
+  .wrapper{
+    display: flex;
+    flex-direction: row;
+    margin-left: 220px;
+  }
+  
+  .right-side{
+    flex: 25%;
+  }
+
+  main{
+    flex: 75%;
+  }
+
+
+  .side-hamburger{
+    display: none;
+  }
+
 }
-

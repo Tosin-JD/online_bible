@@ -1,5 +1,8 @@
 const hamburger = document.querySelector('.hamburger');
-const navLink = document.querySelector('.nav__link');
+const navLink = document.querySelector('.nav-link');
+const sideBar = document.querySelector('.side-bar');
+const handleCollapse = document.querySelector('#sidebar-hamburger');
+
 
 const handleOne = document.querySelector('#handle-one');
 const handleTwo = document.querySelector('#handle-two');
@@ -36,4 +39,14 @@ function rotateHandle(){
     handleThree.classList.remove('reverse-handle-three');
   }
 }
+
+    
+handleCollapse.addEventListener('click', ()=>{
+    
+    if (sideBar.classList.contains('hide')){
+        sideBar.classList.remove('hide');
+    }else{
+        sideBar.classList.add('hide');
+    }
+});
 
