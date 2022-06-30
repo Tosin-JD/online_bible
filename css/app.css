@@ -167,7 +167,6 @@ a {
   position: fixed;
   width: 100%;
   top: 4rem;
-  background-color: #ccc;
   opacity: 0.8;
   border-radius: 4px;
   z-index: 5;
@@ -360,7 +359,7 @@ li{
 
 @media screen and (min-width: 800px){
   body{
-    background-color: mediumpurple;
+    /*background-color: mediumpurple;*/
   }
 
   .side-hamburger{
@@ -381,7 +380,7 @@ li{
   .wrapper{
     display: flex;
     flex-direction: row;
-    margin-left: 220px;
+    margin-left: 320px;
   }
   
   .right-side{
