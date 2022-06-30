@@ -5,25 +5,25 @@
 }
 
 body {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.5em;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5em;
 }
 
 a {
-    text-decoration: none;
-    color: black;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 /* nav styles */
 
 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
 }
 
 .logo {
@@ -80,14 +80,14 @@ a {
 
 .handle-one{
 	animation: rotateTop 0.3s ease-in;
-  	background-color: yellow;
-  	transform: translateY(300%) rotate(45deg);
+	background-color: yellow;
+	transform: translateY(300%) rotate(45deg);
 }
 
 .handle-three{
 	animation: rotateBottom 0.3s ease-in;
-  	background-color: yellow;
-  	transform: translateY(-300%) rotate(-45deg);
+	background-color: yellow;
+	transform: translateY(-300%) rotate(-45deg);
 }
 
 .handle-two{
@@ -129,14 +129,14 @@ a {
 
 .reverse-handle-one{
 	animation: reverseRotateTop 0.3s ease-out;
-  	background-color: yellow;
-  	transform: translateY(0%) rotate(0deg);
+	background-color: yellow;
+	transform: translateY(0%) rotate(0deg);
 }
 
 .reverse-handle-three{
 	animation: reverseRotateBottom 0.3s ease-out;
-  	background-color: yellow;
-  	transform: translateY(0%) rotate(0deg);
+  background-color: yellow;
+  transform: translateY(0%) rotate(0deg);
 }
 
 .reverse-handle-two{
@@ -162,21 +162,22 @@ a {
 /* End animate Mobile Nav */
 
 .nav-link {
-    animation: expandNav 0.3s linear;
-    height: inherit;
-    position: fixed;
-    width: 100%;
-    top: 4rem;
-    background-color: blue;
-    opacity: 0.8;
-    border-radius: 4px;    
+  animation: expandNav 0.3s linear;
+  height: inherit;
+  position: fixed;
+  width: 100%;
+  top: 4rem;
+  background-color: #ccc;
+  opacity: 0.8;
+  border-radius: 4px;
+  z-index: 5;
 }
 
 .nav-link a {
-    animation: addOpacity 0.3s ease-in;
-    display: block;
-    text-align: center;
-    padding: 10px 0;
+  animation: addOpacity 0.3s ease-in;
+  display: block;
+  text-align: center;
+  padding: 10px 0;
 }
 
 .nav-link a:hover {
@@ -193,17 +194,33 @@ a {
 
 
 .side-bar{
-  background-color: grey;
-  width: 200px;
-  /*height: 100vh;*/
+  background-color: #ccc;
+  width: 300px;
+  height: 100vh;
   position: fixed;
   z-index: 1;
   top: 64px;
   left: 0;
   overflow-x: hidden;
   padding-top: 20px;
+  border-top-right-radius: 5px;
 
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+  ::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+  ::-webkit-scrollbar-thumb {
+  background: #888; 
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  
+  background: #555; 
+} 
 
 /* end side bar */
 
@@ -218,10 +235,10 @@ a {
 }
 
 main{
-    font-family: 'Mali', cursive;
-    font-size: 1.5em;
-    flex: 70%;
-    padding: 20px;
+  font-family: 'Mali', cursive;
+  font-size: 1.5em;
+  flex: 70%;
+  padding: 20px;
 }
 
 .right-side{
@@ -355,8 +372,8 @@ li{
     display: grid;
     place-items: center;
     border: 0.05px #000 solid;
-    position: fixed;
-    top: 100px;
+    position: relative;
+    top: 1;
     right: 20px;
     z-index: 2;
   }
