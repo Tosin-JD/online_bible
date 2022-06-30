@@ -31,6 +31,7 @@ function rotateHandle(){
     handleTwo.classList.remove('reverse-handle-two');
   }
 
+
   if (handleThree.classList.contains('handle-three')){
     handleThree.classList.remove('handle-three');
     handleThree.classList.add('reverse-handle-three');
@@ -40,13 +41,30 @@ function rotateHandle(){
   }
 }
 
-    
-handleCollapse.addEventListener('click', ()=>{
-    
-    if (sideBar.classList.contains('hide')){
-        sideBar.classList.remove('hide');
-    }else{
-        sideBar.classList.add('hide');
-    }
+handleCollapse.addEventListener('click', ()=>{  
+  if(sideBar.classList.contains('hide')){
+      sideBar.classList.remove('hide');
+  }else{
+      sideBar.classList.add('hide');
+  }
 });
+
+window.addEventListener('click', (event)=>{
+  let windowWidth   = window.innerWidth;  // get the window width
+  if(windowWidth < 800){
+    if(event.srcElement !== handleCollapse){
+      if(!(sideBar.classList.contains('hide'))){
+        sideBar.classList.add('hide');
+      }
+    }
+  }
+});
+    
+
+
+
+
+
+
+
 
