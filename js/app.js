@@ -49,16 +49,18 @@ handleCollapse.addEventListener('click', ()=>{
   }
 });
 
-window.addEventListener('click', (event)=>{
-  let windowWidth   = window.innerWidth;  // get the window width
-  if(windowWidth < 800){
-    if(event.srcElement !== handleCollapse){
-      if(!(sideBar.classList.contains('hide'))){
-        sideBar.classList.add('hide');
-      }
-    }
-  }
-});
+
+
+// window.addEventListener('click', (event)=>{
+//   let windowWidth   = window.innerWidth;  // get the window width
+//   if(windowWidth < 800){
+//     if(event.srcElement !== handleCollapse){
+//       if(!(sideBar.classList.contains('hide'))){
+//         sideBar.classList.add('hide');
+//       }
+//     }
+//   }
+// });
     
 
 

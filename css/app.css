@@ -173,6 +173,7 @@ a {
 }
 
 .nav-link a {
+  background-color: #ccc;
   animation: addOpacity 0.3s ease-in;
   display: block;
   text-align: center;
@@ -338,7 +339,7 @@ li{
 }
 
 /* Media Queries for devices with screen width greater than 600px */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
   .nav-link {
     display: block;
     position: static;
@@ -347,6 +348,7 @@ li{
   }
 
   .nav-link a {
+    background-color: #fff;
     display: inline-block;
     padding: 15px 20px;
   }
